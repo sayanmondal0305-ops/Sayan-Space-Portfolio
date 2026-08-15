@@ -16,6 +16,8 @@ import * as random from "maath/random";
 import { useRef, useState, Suspense } from "react";
 import type { Points as PointsType } from "three";
 
+import { SCROLL_SPRING } from "@/lib/motion";
+
 export const StarBackground = ({
   scrollRef,
   ...props
@@ -64,10 +66,7 @@ export const StarsCanvas = () => {
   const scrollRef = useRef(0);
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll();
-  const smoothScroll = useSpring(scrollYProgress, {
-    stiffness: 60,
-    damping: 20,
-  });
+  const smoothScroll = useSpring(scrollYProgress, SCROLL_SPRING);
 
   useMotionValueEvent(smoothScroll, "change", (v) => {
     scrollRef.current = reduce ? 0 : v;

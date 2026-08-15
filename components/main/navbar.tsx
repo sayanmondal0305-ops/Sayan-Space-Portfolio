@@ -35,7 +35,7 @@ export const Navbar = () => {
               <Link
                 key={link.title}
                 href={link.link}
-                className="cursor-pointer hover:text-[rgb(112,66,248)] transition"
+                className="cursor-pointer hover:text-[rgb(112,66,248)] transition-colors duration-200"
               >
                 {link.title}
               </Link>
@@ -51,6 +51,7 @@ export const Navbar = () => {
               target="_blank"
               rel="noreferrer noopener"
               key={name}
+              className="transition-colors duration-200 hover:text-[rgb(112,66,248)]"
             >
               <Icon className="h-6 w-6 text-white" />
             </Link>
@@ -75,7 +76,7 @@ export const Navbar = () => {
               <Link
                 key={link.title}
                 href={link.link}
-                className="cursor-pointer hover:text-[rgb(112,66,248)] transition text-center"
+                className="cursor-pointer hover:text-[rgb(112,66,248)] transition-colors duration-200 text-center"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.title}

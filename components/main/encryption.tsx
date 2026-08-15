@@ -10,7 +10,7 @@ import {
 import Image from "next/image";
 import { useRef } from "react";
 
-import { slideInFromTop } from "@/lib/motion";
+import { fadeInUp, SCROLL_SPRING, slideInFromTop } from "@/lib/motion";
 
 export const Encryption = () => {
   const sectionRef = useRef<HTMLDivElement | null>(null);
@@ -25,7 +25,7 @@ export const Encryption = () => {
     [0, 1],
     reduce ? [0, 0] : [-80, 80],
   );
-  const smoothY = useSpring(y, { stiffness: 60, damping: 20 });
+  const smoothY = useSpring(y, SCROLL_SPRING);
 
   return (
     <div
@@ -35,6 +35,9 @@ export const Encryption = () => {
       <div className="absolute w-auto h-auto top-0 z-[5]">
         <motion.div
           variants={slideInFromTop}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.6 }}
           className="text-[40px] font-medium text-center text-gray-200"
         >
           Precision{" "}
@@ -45,14 +48,20 @@ export const Encryption = () => {
         </motion.div>
       </div>
 
-      <div className="flex flex-col items-center justify-center translate-y-[-50px] absolute z-[20] w-auto h-auto">
+      <motion.div
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }}
+        className="flex flex-col items-center justify-center translate-y-[-50px] absolute z-[20] w-auto h-auto"
+      >
         <div className="flex flex-col items-center group cursor-pointer w-auto h-auto">
           <Image
             src="lock-top.png"
             alt="Lock top"
             width={50}
             height={50}
-            className="translate-y-5 transition-all duration-200 group-hover:translate-y-11"
+            className="translate-y-5 transition-transform duration-250 ease-out pointer-fine:group-hover:translate-y-11"
           />
           <Image
             src="lock-main.png"
@@ -66,13 +75,19 @@ export const Encryption = () => {
         <div className="Welcome-box px-[15px] py-[4px] z-[20] border my-[20px] border-[#7042F88B] opacity-[0.9]">
           <h1 className="Welcome-text text-[12px]">Prompt Engineered</h1>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="absolute z-[20] bottom-[10px] px-[5px]">
+      <motion.div
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.6 }}
+        className="absolute z-[20] bottom-[10px] px-[5px]"
+      >
         <div className="cursive text-[20px] font-medium text-center text-gray-300">
           Calibrated prompts, disciplined output — a voice that holds.
         </div>
-      </div>
+      </motion.div>
 
       <div className="w-full flex items-start justify-center absolute">
         <motion.video

@@ -1,4 +1,9 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 import { EDUCATION } from "@/constants";
+import { cardStagger, fadeInUp } from "@/lib/motion";
 
 export const Education = () => {
   return (
@@ -6,13 +11,26 @@ export const Education = () => {
       id="education"
       className="flex flex-col items-center justify-center py-20"
     >
-      <h1 className="text-[40px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 py-20">
+      <motion.h1
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }}
+        className="text-[40px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 py-20"
+      >
         Education
-      </h1>
-      <div className="h-full w-full grid grid-cols-1 md:grid-cols-2 gap-10 px-10 max-w-[1100px]">
+      </motion.h1>
+      <motion.div
+        variants={cardStagger}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+        className="h-full w-full grid grid-cols-1 md:grid-cols-2 gap-10 px-10 max-w-[1100px]"
+      >
         {EDUCATION.map((edu) => (
-          <div
+          <motion.div
             key={edu.title}
+            variants={fadeInUp}
             className="relative overflow-hidden rounded-lg shadow-lg border border-[#2A0E61] bg-[#03001427] backdrop-blur-sm p-6"
           >
             <div className="flex flex-row items-center justify-between gap-2">
@@ -23,9 +41,9 @@ export const Education = () => {
             </div>
             <p className="mt-2 text-sm text-[#b49bff]">{edu.institution}</p>
             <p className="mt-3 text-gray-300">{edu.desc}</p>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };

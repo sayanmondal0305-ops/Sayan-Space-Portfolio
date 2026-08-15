@@ -10,6 +10,7 @@ import {
 import { useRef } from "react";
 
 import { HeroContent } from "@/components/sub/hero-content";
+import { SCROLL_SPRING } from "@/lib/motion";
 
 export const Hero = () => {
   const sectionRef = useRef<HTMLDivElement | null>(null);
@@ -29,8 +30,8 @@ export const Hero = () => {
     [0, 1],
     [1, reduce ? 1 : 1.15],
   );
-  const smoothY = useSpring(y, { stiffness: 60, damping: 20 });
-  const smoothScale = useSpring(scale, { stiffness: 60, damping: 20 });
+  const smoothY = useSpring(y, SCROLL_SPRING);
+  const smoothScale = useSpring(scale, SCROLL_SPRING);
 
   return (
     <div

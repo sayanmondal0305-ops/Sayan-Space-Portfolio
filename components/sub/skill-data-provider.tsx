@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 
+import { EASE_OUT } from "@/lib/motion";
+
 type SkillDataProviderProps = {
   src: string;
   name: string;
@@ -21,14 +23,21 @@ export const SkillDataProvider = ({
 }: SkillDataProviderProps) => {
   const { ref, inView } = useInView({
     triggerOnce: true,
+    threshold: 0.3,
   });
 
   const imageVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        delay: Math.min(index * 0.06, 0.5),
+        duration: 0.5,
+        ease: EASE_OUT,
+      },
+    },
   };
-
-  const animationDelay = 0.1;
 
   return (
     <motion.div
@@ -36,8 +45,6 @@ export const SkillDataProvider = ({
       initial="hidden"
       variants={imageVariants}
       animate={inView ? "visible" : "hidden"}
-      custom={index}
-      transition={{ delay: index * animationDelay }}
     >
       <Image src={`skills/${src}`} width={width} height={height} alt={name} />
     </motion.div>

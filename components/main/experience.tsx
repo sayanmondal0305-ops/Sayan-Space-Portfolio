@@ -1,4 +1,9 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 import { EXPERIENCE } from "@/constants";
+import { cardStagger, fadeInUp } from "@/lib/motion";
 
 export const Experience = () => {
   return (
@@ -6,13 +11,26 @@ export const Experience = () => {
       id="experience"
       className="flex flex-col items-center justify-center py-20"
     >
-      <h1 className="text-[40px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 py-20">
+      <motion.h1
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }}
+        className="text-[40px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 py-20"
+      >
         Experience
-      </h1>
-      <div className="w-full flex flex-col gap-10 px-10 max-w-[900px]">
+      </motion.h1>
+      <motion.div
+        variants={cardStagger}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+        className="w-full flex flex-col gap-10 px-10 max-w-[900px]"
+      >
         {EXPERIENCE.map((exp) => (
-          <div
+          <motion.div
             key={exp.role}
+            variants={fadeInUp}
             className="relative overflow-hidden rounded-lg shadow-lg border border-[#2A0E61] bg-[#03001427] backdrop-blur-sm p-6"
           >
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
@@ -32,9 +50,9 @@ export const Experience = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };

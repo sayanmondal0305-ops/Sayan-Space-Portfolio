@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 import {
+  heroContainer,
   slideInFromLeft,
   slideInFromRight,
   slideInFromTop,
@@ -13,6 +14,7 @@ import {
 export const HeroContent = () => {
   return (
     <motion.div
+      variants={heroContainer}
       initial="hidden"
       animate="visible"
       className="flex flex-row items-center justify-center px-20 mt-40 w-full z-[20]"
@@ -29,7 +31,7 @@ export const HeroContent = () => {
         </motion.div>
 
         <motion.div
-          variants={slideInFromLeft(0.5)}
+          variants={slideInFromLeft(0)}
           className="flex flex-col gap-6 mt-6 text-6xl text-bold text-white max-w-[600px] w-auto h-auto"
         >
           <span>
@@ -42,7 +44,7 @@ export const HeroContent = () => {
         </motion.div>
 
         <motion.p
-          variants={slideInFromLeft(0.8)}
+          variants={slideInFromLeft(0)}
           className="text-lg text-gray-400 my-5 max-w-[600px]"
         >
           I&apos;m Sayan Mondal. I design precision prompts, calibrate
@@ -51,7 +53,7 @@ export const HeroContent = () => {
         </motion.p>
 
         <motion.a
-          variants={slideInFromLeft(1)}
+          variants={slideInFromLeft(0)}
           href="#experience"
           className="py-2 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px]"
         >
@@ -60,7 +62,7 @@ export const HeroContent = () => {
       </div>
 
       <motion.div
-        variants={slideInFromRight(0.8)}
+        variants={slideInFromRight(0)}
         className="w-full h-full flex justify-center items-center"
       >
         <Image
