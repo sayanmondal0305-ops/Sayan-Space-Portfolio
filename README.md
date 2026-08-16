@@ -4,13 +4,6 @@ A space-themed portfolio built with Next.js, React Three Fiber, and Framer Motio
 
 ## Getting Started
 
-```bash
-npm install --legacy-peer-deps
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000).
-
 ## Scripts
 
 | Script            | Description            |
